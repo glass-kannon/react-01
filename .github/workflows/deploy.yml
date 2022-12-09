@@ -33,6 +33,8 @@ jobs:
 
       - run: npm run build --if-present
 
+      - run: npm run deploy
+
   # deploy:
   #   needs: ci
 
@@ -58,18 +60,18 @@ jobs:
   #         github_token: ${{ secrets.GITHUB_TOKEN }}
   #         repository: ${{ github.repository }}
 
-  deploy:
-    needs: ci
+  # deploy:
+  #   needs: ci
 
-    env:
-      name: github-pages
-      url: ${{ steps.build-publish.outputs.page_url }}
+  #   env:
+  #     name: github-pages
+  #     url: ${{ steps.build-publish.outputs.page_url }}
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - id: build-publish
-        uses: bitovi/github-actions-react-to-ghp@v1.2.0
-        with:
-          checkout: true
-          path: dist
+  #   steps:
+  #     - id: build-publish
+  #       uses: bitovi/github-actions-react-to-ghp@v1.2.0
+  #       with:
+  #         checkout: true
+  #         path: dist
