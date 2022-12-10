@@ -2,79 +2,79 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: Deploy
+# name: Deploy
 
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+# on:
+#   push:
+#     branches: ["main"]
+#   pull_request:
+#     branches: ["main"]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# permissions:
+#   contents: read
+#   pages: write
+#   id-token: write
 
-jobs:
-  ci:
-    runs-on: ubuntu-latest
+# jobs:
+#   ci:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "lts/*"
-          cache: "npm"
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: "lts/*"
+#           cache: "npm"
 
-      - run: npm ci
+#       - run: npm ci
 
-      - run: npm test
+#       - run: npm test
 
-      - run: npm run build --if-present
+#       - run: npm run build --if-present
 
-      - run: |
-          git config user.name "$(git log -n 1 --pretty=format:%an)"
-          git config user.email "$(git log -n 1 --pretty=format:%ae)"
-          npm run deploy
+#       - run: |
+#           git config user.name glass-kannon
+#           git config user.email timmicglass@gmail.com
+#           npm run deploy
 
-  # deploy:
-  #   needs: ci
+# deploy:
+#   needs: ci
 
-  #   runs-on: ubuntu-latest
+#   runs-on: ubuntu-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v3
+#   steps:
+#     - uses: actions/checkout@v3
 
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: "lts/*"
-  #         cache: "npm"
+#     - uses: actions/setup-node@v3
+#       with:
+#         node-version: "lts/*"
+#         cache: "npm"
 
-  #     - name: Deploy
-  #       run: |
-  #         git config --global user.name $user_name
-  #         git config --global user.email $user_email
-  #         git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${repository}
-  #         npm run deploy
-  #       env:
-  #         user_name: "github-actions[bot]"
-  #         user_email: "github-actions[bot]@users.noreply.github.com"
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         repository: ${{ github.repository }}
+#     - name: Deploy
+#       run: |
+#         git config --global user.name $user_name
+#         git config --global user.email $user_email
+#         git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${repository}
+#         npm run deploy
+#       env:
+#         user_name: "github-actions[bot]"
+#         user_email: "github-actions[bot]@users.noreply.github.com"
+#         github_token: ${{ secrets.GITHUB_TOKEN }}
+#         repository: ${{ github.repository }}
 
-  # deploy:
-  #   needs: ci
+# deploy:
+#   needs: ci
 
-  #   env:
-  #     name: github-pages
-  #     url: ${{ steps.build-publish.outputs.page_url }}
+#   env:
+#     name: github-pages
+#     url: ${{ steps.build-publish.outputs.page_url }}
 
-  #   runs-on: ubuntu-latest
+#   runs-on: ubuntu-latest
 
-  #   steps:
-  #     - id: build-publish
-  #       uses: bitovi/github-actions-react-to-ghp@v1.2.0
-  #       with:
-  #         checkout: true
-  #         path: dist
+#   steps:
+#     - id: build-publish
+#       uses: bitovi/github-actions-react-to-ghp@v1.2.0
+#       with:
+#         checkout: true
+#         path: dist
